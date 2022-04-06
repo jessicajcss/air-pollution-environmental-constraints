@@ -2,7 +2,6 @@
 title: "Step_by_Step"
 author: "Jessica C. dos Santos-Silva"
 date: "05/04/2022"
-output: html_document
 ---
 
 

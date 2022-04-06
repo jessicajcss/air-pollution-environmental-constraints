@@ -1,0 +1,78 @@
+COLUMN DESCRIPTION FILE
+
+DATASET: meteorological data
+FILES: aeroporto_raw.csv; aguasdejoi_raw.csv; ceasa_raw.csv; cubatao_raw.csv; flotflux_raw.csv; iateclube_raw.csv; itaum_raw.csv; rodovia_raw.csv.
+COLUMNS:
+  date (or date.meteo) - date_time (UTC) of record
+  temp - Temperature (ºC)
+  umid - Relative Humidity (%)
+  ws - Wind speed (m/s)
+  wd - Wind direction (º)
+  prec - Accumulated precipitation (mm)
+  u - u.wind component (m/s)
+  v - v.wind component (m/s)
+
+DATASET: rain gauges data
+FILES: pluviometros_raw.csv
+COLUMNS:
+  date (or date.meteo) - date_time (UTC) of record
+  rain gaude - values of accumulated precipitation (mm)
+  
+DATASET: localization of meteorological stations
+FILES: stations.xlsx; stations_pluv.xlsx
+COLUMNS:
+  latitude - degrees
+  longitude - degrees
+  elevation - meters above sea level
+  code - station identification
+  station - local name of the meteorological/rain gauge station
+
+DATASET: sampling and laboratory results data
+FILES: 01-concentration_data.csv; concentracao_meteo_windflow.csv
+COLUMNS:
+  Filter.ID - sample identification
+  rep - laboratory replicate measurement
+  site - sampling site (MIC - Metallurgical Industrial Complex, 
+                        NID - North Industrial District)
+  date - start time of sampling
+  date.end - end time of sampling
+  flow - sampling flow rate (lpm)
+  time - sampling duration (min)
+  PM2.5 - PM2.5 mass concentration*
+  BC - black carbon concentration*
+  pBC - percentual of black carbon in the sample
+  Al:Hg - EDXRF results - elemental concentration*
+  fluoride: calcium - IC results - ionic concentration*
+  * all concentrations are in ug/m³
+
+DATASET: Wind classification
+SCRIPT: 02-horizontal_flow_characterization.R
+FILES: concentracao_meteo_windflow.csv
+COLUMNS:
+  count_NA - fraction of raw (5-min) meteorological data available for that period
+  Lit - resultant transport distance* (km)
+  Sit - wind run* (km)
+  Rit - recirculation factor*
+  wind_classification - Classification of horizontal flow condition
+    *Discrete integral quantities as characteristics of the flow at the measurement point 
+    (i.e., IateClube meteorological station for MIC, and Flotflux meteorological station for NID).
+
+
+
+DATASET: Trajectory analysis
+SCRIPT: 02-trajectory-analysis.R
+FILES:  myTrajData_MIC_96h_10m_3h.rds; myTrajData_NID_96h_10m_3h.rds
+COLUMNS:
+  hour.inc - hour offset from the arrival date
+  lat - latitute (degrees) receptor point
+  lon - longitute (degrees) receptor point
+  height - trajectory height (m)
+  pressure - trajectory pressure (Pa)
+  date2 - position time of the air mass
+  date - arrival time of the air mass
+  start_height - elevation of the receptor point
+  site - identification of the receptor point
+
+  
+
+  
