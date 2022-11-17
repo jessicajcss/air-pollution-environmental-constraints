@@ -1,0 +1,121 @@
+*Supplementary material:*
+
+dos Santos Silva, Jessica Caroline; Westrupp Medeiros, Sandra Helena; da Silva, Luiz Vitor; Ventura Ferreira, Danielli; Bufato Moreira, Camila Arielle; de Souza Zorzenão, Priscila Caroline; Pauliquevis, Theotonio; Ferreira de Souza, Rodrigo Augusto; Yamamoto, Carlos Itsuo; Godoi, Ricardo Henrique Moreton (2022), “Air pollution in complex terrain: lessons from a mid-size city in the southern coast of Brazil [dataset]”, Mendeley Data, V1, doi: 10.17632/szgtbzwpy8.1
+
+
+
+#######################
+COLUMN DESCRIPTION FILE
+#######################
+
+
+
+
+DATASET: meteorological data
+FILES: aeroporto_raw.csv; aguasdejoi_raw.csv; ceasa_raw.csv; cubatao_raw.csv; flotflux_raw.csv; iateclube_raw.csv; itaum_raw.csv; rodovia_raw.csv.
+COLUMNS:
+  date (or date.meteo) - date_time (UTC) of record
+  temp - Temperature (ºC)
+  umid - Relative Humidity (%)
+  ws - Wind speed (m/s)
+  wd - Wind direction (º)
+  prec - Accumulated precipitation (mm)
+  u - u.wind component (m/s)
+  v - v.wind component (m/s)
+Source: Original meteorological data was provisioned by Santa Catarina Civil Defense (2021) or [SBJV Airport data] is available on the MESONET website.
+
+REFERENCE:
+MESONET, n.d. ASOS-AWOS-METAR Data Download [WWW Document]. URL https://mesonet.agron.iastate.edu/request/download.phtml?network=BR__ASOS (accessed 3.2.22). 
+
+
+
+
+
+DATASET: rain gauges data
+FILES: pluviometros_raw.csv
+COLUMNS:
+  date (or date.meteo) - date_time (UTC) of record
+  rain gaude - values of accumulated precipitation (mm)
+Source: CEMADEM, 2021. Baixar dados [WWW Document]. URL http://www2.cemaden.gov.br/mapainterativo/download/downpluv.php (accessed 3.2.22).
+  
+  
+  
+ 
+  
+DATASET: localization of meteorological stations
+FILES: stations.xlsx; stations_pluv.xlsx
+COLUMNS:
+  latitude - degrees
+  longitude - degrees
+  elevation - meters above sea level
+  code - station identification
+  station - local name of the meteorological/rain gauge station
+
+
+
+
+
+DATASET: sampling and laboratory results data
+FILES: 01-concentration_data.csv; concentracao_meteo_windflow.csv
+COLUMNS:
+  Filter.ID - sample identification
+  rep - laboratory replicate measurement
+  site - sampling site (MIC - Metallurgical Industrial Complex, 
+                        NID - North Industrial District)
+  date - start time of sampling
+  date.end - end time of sampling
+  flow - sampling flow rate (lpm)
+  time - sampling duration (min)
+  PM2.5 - PM2.5 mass concentration*
+  BC - black carbon concentration*
+  pBC - percentual of black carbon in the sample
+  Al:Hg - EDXRF results - elemental concentration*
+  fluoride: calcium - IC results - ionic concentration*
+  * all concentrations are in ug/m³
+
+
+
+
+
+DATASET: Wind classification
+SCRIPT: 02-horizontal_flow_characterization.R
+FILES: concentracao_meteo_windflow.csv
+COLUMNS:
+  count_NA - fraction of raw (5-min) meteorological data available for that period
+  Lit - resultant transport distance* (km)
+  Sit - wind run* (km)
+  Rit - recirculation factor*
+  wind_classification - Classification of horizontal flow condition
+    *Discrete integral quantities as characteristics of the flow at the measurement point 
+    (i.e., IateClube meteorological station for MIC, and Flotflux meteorological station for NID).
+
+
+
+
+
+DATASET: Trajectory analysis
+SCRIPT: 02-trajectory-analysis.R
+FILES:  myTrajData_MIC_96h_10m_3h.rds; myTrajData_NID_96h_10m_3h.rds
+COLUMNS:
+  hour.inc - hour offset from the arrival date
+  lat - latitute (degrees) receptor point
+  lon - longitute (degrees) receptor point
+  height - trajectory height (m)
+  pressure - trajectory pressure (Pa)
+  date2 - position time of the air mass
+  date - arrival time of the air mass
+  start_height - elevation of the receptor point
+  site - identification of the receptor point
+Source: This data was obtained using openair package functions. These trajectories have been calculated using the Global NOAA-NCEP/NCAR reanalysis data archives.  Hysplit calculated trajectories based on archive data may be distributed without permission (see https://ready.arl.noaa.gov/HYSPLIT_agreement.php). 
+
+REFERENCE:
+Carslaw, D.C., 2020. The openair book: Tools for air quality data analysis [WWW Document]. URL https://bookdown.org/david_carslaw/openair
+
+Carslaw, D.C., Ropkins, K., 2012. openair — An R package for air quality data analysis. Environmental Modelling & Software 27–28, 52–61. https://doi.org/10.1016/j.envsoft.2011.09.008
+
+Stein, A.F., Draxler, R.R, Rolph, G.D., Stunder, B.J.B., Cohen, M.D., and Ngan, F., (2015). NOAA's HYSPLIT atmospheric transport and dispersion modeling system, Bull. Amer. Meteor. Soc., 96, 2059-2077, http://dx.doi.org/10.1175/BAMS-D-14-00110.1this link opens in a new window
+
+Rolph, G., Stein, A., and Stunder, B., (2017). Real-time Environmental Applications and Display sYstem: READY. Environmental Modelling & Software, 95, 210-228, https://doi.org/10.1016/j.envsoft.2017.06.025this link opens in a new window. ( http://www.sciencedirect.com/science/article/pii/S1364815217302360)
+  
+
+  

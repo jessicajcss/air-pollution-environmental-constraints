@@ -8,7 +8,7 @@
 # ii) For the sampling period [line: 590 - 805]
 
 ###################
-# Last update: 2022-04-05
+# Last update: 2022-07-01 corrected lines 600/601 e 681/682 [date.meteo]
 # Author: Santos-Silva, J. C. <jessica.jcss@gmail.com>
 
 ##############################################
@@ -597,8 +597,8 @@ dataset_MIC_meteo <- dataset_MIC %>%
 
 # full 5-min interval
 interval <- as.data.frame(seq.POSIXt(
-  as_datetime(head(na.omit(dataset_MIC[["date"]]), n = 1)),
-  as_datetime(tail(na.omit(dataset_MIC[["date"]]), n = 1)),
+  as_datetime(head(na.omit(dataset_MIC[["date.meteo"]]), n = 1)),
+  as_datetime(tail(na.omit(dataset_MIC[["date.meteo"]]), n = 1)),
   by = "5 min"))
 colnames(interval) <- c("date.meteo")
 
@@ -680,8 +680,8 @@ dataset_NID_meteo <- dataset_NID %>%
 
 # full 5-min interval
 interval <- as.data.frame(seq.POSIXt(
-  as_datetime(head(na.omit(dataset_NID[["date"]]), n = 1)),
-  as_datetime(tail(na.omit(dataset_NID[["date"]]), n = 1)),
+  as_datetime(head(na.omit(dataset_NID[["date.meteo"]]), n = 1)),
+  as_datetime(tail(na.omit(dataset_NID[["date.meteo"]]), n = 1)),
   by = "5 min"))
 colnames(interval) <- c("date.meteo")
 

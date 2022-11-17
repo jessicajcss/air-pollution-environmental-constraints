@@ -11,7 +11,7 @@
 # ii) INPUT ProUCL-OUTPUT file - [line: 357]
 
 ###################
-# Last update: 2022-04-05
+# Last update: 2022-11-17
 # Author: Santos-Silva, J. C. <jessica.jcss@gmail.com>
 
 ##############################################
@@ -39,44 +39,68 @@ dataset <- read_csv(
 ######## REFERENCE CONCENTRATIONS/DOSE #######
 
 # RfC or REL
-RfC <- data.frame(0.005, 0.0001, 0.002,
-                  0.00015, 45.85, 0.000006,
-                  0.00005, 0.0005, 0.0017,
-                  0.0002, 0.1, 0.035, 
-                  0.0001, 0.000014, 0.00015)
-colnames(RfC) <- c('Al', 'Cr', 'Cu', 
-                   'Pb', 'Fe', 'Co',
-                   'Mn', 'Se', 'Br',
-                   'P', 'Mg', 'Zn', 
-                   'V', 'Ni', 'Cl')
+RfC <- data.frame(0.005, 0.0017, 
+                  0.000006, 0.000058, 0.0001,
+                  0.002, 45.85, 0.1, 
+                  0.00005, 0.000014, 0.001,
+                  0.00015, 0.02, 
+                  0.0001, 0.035)
+colnames(RfC) <- c('Al',  'Br', 
+                   'Co', 'CrIII', 'CrVI', 
+                   'Cu', 'Fe', 'Mg',
+                   'Mn', 'Ni', 'P',
+                   'Pb', 'Se',
+                   'V', 'Zn')
+
 
 # IUR
 IUR <- data.frame(0.084, 0.000012, 0.009, 0.00024)
-colnames(IUR) <- c('Cr', 'Pb', 'Co', 'Ni')
+colnames(IUR) <- c('CrVI', 'Pb', 'Co', 'Ni')
 
 # RfD
-RfD <- data.frame(0.005, 0.0035, 0.3, 0.04, 0.007, 0.003, 0.02)
-colnames(RfD) <- c('Se', 'Pb', 'Zn', 'Cu', 'V', 'Cr', 'Ni')
+RfD <- data.frame(1, 
+                  0.0003, 1.5, 0.003,
+                  0.04, 0.7, 11,
+                  0.024, 0.011, 11,
+                  0.0035, 0.005,
+                  0.005, 0.3)
+colnames(RfD) <- c('Al',
+                   'Co', 'CrIII', 'CrVI', 
+                   'Cu', 'Fe', 'Mg',
+                   'Mn', 'Ni', 'P',
+                   'Pb', 'Se',
+                   'V', 'Zn')
 
 # GIABS
-GIABS <- data.frame(1, 1, 1 , 1, 0.026, 0.025, 0.04)
-colnames(GIABS) <- c('Se', 'Pb', 'Zn', 'Cu', 'V', 'Cr', 'Ni')
-
+GIABS <- data.frame(1, 
+                    1 , 0.013, 0.025,
+                    1, 1,
+                    0.04, 0.04, 1, 
+                    1, 1, 
+                    0.026, 1)
+colnames(GIABS) <-  c('Al',  
+                      'Co', 'CrIII', 'CrVI', 
+                      'Cu', 'Fe',
+                      'Mn', 'Ni', 'P',
+                      'Pb', 'Se',
+                      'V', 'Zn')
 # SFo
 SFo <- data.frame(0.0085, 0.5)
-colnames(SFo) <- c('Pb', 'Cr')
+colnames(SFo) <- c('Pb', 'CrVI')
 
 # ABS
-ABS <- data.frame(0.01, 0.01, 0.01,
-                  0.1, 0.01, 0.01,
+ABS <- data.frame(0.01, 0.01, 
+                  0.01, 0.01, 0.02,
                   0.01, 0.01, 0.01,
-                  0.01, 0.01, 0.01, 
-                  0.01, 0.01, 0.01)
-colnames(ABS) <- c('Al', 'Cr', 'Cu', 
-                   'Pb', 'Fe', 'Co',
-                   'Mn', 'Se', 'Br',
-                   'P', 'Mg', 'Zn', 
-                   'V', 'Ni', 'Cl')
+                  0.01, 0.02, 0.01, 
+                  0.1, 0.03, 0.01,
+                  0.01, 0.01 )
+colnames(ABS) <- c('Al',  'Br', 
+                   'Co', 'CrIII', 'CrVI', 
+                   'Cu', 'Fe', 'Mg',
+                   'Mn', 'Ni', 'P',
+                   'Pb', 'Se','Ti',
+                   'V', 'Zn')
 
 # Other exposure parameters
 Notation <- c('IngR', 'EF', 'ED', 'ED40', 'CF', 'BW', 
@@ -84,12 +108,12 @@ Notation <- c('IngR', 'EF', 'ED', 'ED40', 'CF', 'BW',
               'ET', 
               'ATnnonc6', 'ATnnonc25', 'ATnnonc40', 'ATnc',
               'SA', 'AF')
-Children <- c(200, 350, 6, NA, 0.000001, 15,
+Children <- c(80, 350, 6, NA, 0.000001, 15,
               6*365, NA, NA, 70*365,
               24, 
               6*365*24, NA, NA, 70*365*24,
               2373, 0.2)
-Adults <- c(100, 350, 25, 40, 0.000001, 80,
+Adults <- c(30, 350, 25, 40, 0.000001, 80,
             NA, 25*365, 40*365, 70*365,
             24, 
             NA, 25*365*24, 40*365*24, 70*365*24,
@@ -255,28 +279,17 @@ der.factor_carc_40years <- (
 ###########################################
 ########## Seasonal Analysis ##############
 
-dataset <- dataset %>% 
-  cutData(hemisphere = "southern", 
-          type = "season")
-
-#REORDER FACTOR SEASON
-dataset$season <- factor(dataset$season, 
-                         levels = c("summer (DJF)", 
-                                    "autumn (MAM)", 
-                                    "winter (JJA)", 
-                                    "spring (SON)"))
-
 
 
 ##### To generate INPUT dataset for proUCL (to calculate UCL 95%) ----
 
 
 df <- dataset %>%
-  select(site, season, PM2.5, Al, Cr, #only variables of interest
+  select(site, wind_classification, PM2.5, Al, Cr, #only variables of interest
          Cu, Pb, Fe, Co,
          Mn, Se, Br,
          P, Mg, Zn, 
-         V, Ni, Cl) %>%
+         V, Ni)%>%
   filter(!is.na(Al)) %>%
   mutate(D_PM2.5 = if_else(PM2.5 == 0, "0", "1"),
          D_Al = if_else(Al == 0, "0", "1"),
@@ -292,8 +305,7 @@ df <- dataset %>%
          D_Mg = if_else(Mg == 0, "0", "1"),
          D_Zn = if_else(Zn == 0, "0", "1"),
          D_V = if_else(V == 0, "0", "1"),
-         D_Ni = if_else(Ni == 0, "0", "1"),
-         D_Cl = if_else(Cl == 0, "0", "1")) %>% 
+         D_Ni = if_else(Ni == 0, "0", "1")) %>% 
   relocate(D_PM2.5, .after = PM2.5) %>% 
   relocate(D_Al, .after = Al) %>% 
   relocate(
@@ -321,9 +333,7 @@ df <- dataset %>%
   relocate(
     D_V, .after = V) %>% 
   relocate(
-    D_Ni, .after = Ni) %>% 
-  relocate(
-    D_Cl, .after = Cl)
+    D_Ni, .after = Ni) 
 
 
 # Dataset proUCL-INPUT
@@ -347,36 +357,68 @@ proUCL_INPUT_NID <- write_csv(
 
 
 
+#### em mg/kg
+
+dataset_mgkg <- dataset %>%
+  mutate_at(vars(Al:V), ~replace(., !is.na(PM2.5),.*10^6/PM2.5))
+
+
+#rodar novamente linha 280 - 346
+
+write_csv(
+  df_MIC,
+  "./output/03-risk_assessment-health/proUCL_INPUT_MICmgkg.csv")
+
+write_csv(
+  df_NID,
+  "./output/03-risk_assessment-health/proUCL_INPUT_NIDmgkg.csv")
 
 
 
 
-#### Using UCL95% seasonal proUCL-OUTPUT as INPUT to health risk assessment ----
+
+
+
+#### Using UCL95% by wind class proUCL-OUTPUT as INPUT to health risk assessment ----
 
 ########### INPUT ########### 
-conf_UCL_ugm3_season <- read.csv(
-  "./data/03-risk_assessment-health/UCL_ProUCL.csv", sep = ";")
-
+conf_UCL_ugm3_wind <- read.csv(
+  "./data/03-risk_assessment-health/UCL_ProUCL.csv", sep = ";") %>%
+  filter(!is.na(wind_class)) %>%
+  select(-n, -Cl) %>%
+  mutate(CrVI = Cr*.4, 
+         CrIII = Cr - CrVI)
 
 # Dataset with concentration units required by the methodology
-conf_UCL_mgkg_season <- conf_UCL_ugm3_season %>%
-  mutate_at(vars(Al:Cl), ~replace(., !is.na(PM2.5),.*10^6/PM2.5))
+conf_UCL_mgkg_wind <- read.csv(
+  "./data/03-risk_assessment-health/UCLmgkg_ProUCL.csv", sep = ";") %>%
+  filter(!is.na(wind_class)) %>%
+  select(-n, -Cl) %>%
+  mutate(CrVI = Cr*.4, 
+         CrIII = Cr - CrVI) %>%
+  rename(site = X)
 
-conf_UCL_ugm3_season <- conf_UCL_ugm3_season %>% 
+
+
+conf_UCL_ugm3_wind <- conf_UCL_ugm3_wind %>% 
   melt() %>%
-  set_colnames(c("site", "season", "variable", "C95ugm3"))
+  set_colnames(c("site", "wind_class", "variable", "C95ugm3"))
 
-conf_UCL_mgkg_season <- conf_UCL_mgkg_season %>% 
+conf_UCL_mgkg_wind <- conf_UCL_mgkg_wind %>% 
   melt() %>%
-  set_colnames(c("site", "season", "variable", "C95mgkg"))
+  set_colnames(c("site", "wind_class", "variable", "C95mgkg"))
 
-conf_UCL_season <- merge(conf_UCL_ugm3_season, conf_UCL_mgkg_season, 
-                         by = c("site", "season", "variable"))
+
+conf_UCL_wind <- merge(conf_UCL_ugm3_wind, conf_UCL_mgkg_wind, 
+                       by = c("site", "wind_class", "variable"))
+
 
 
 ### Calculations for health risk assessment - site: MIC ----
-
-health_risks_MIC_season <- conf_UCL_season %>%
+library(dplyr)
+detach('dplyr')
+library(tidyverse)
+health_risks_MIC_wind <- conf_UCL_wind %>%
   filter(site == "MIC") %>%
   select(-site) %>%
   merge(., melt(RfC), all = T, by = "variable") %>%
@@ -385,7 +427,7 @@ health_risks_MIC_season <- conf_UCL_season %>%
   merge(., melt(GIABS), all = T, by = "variable") %>%
   merge(., melt(SFo), all = T, by = "variable") %>%
   merge(., melt(ABS), all = T, by = "variable") %>%
-  set_colnames(c("metal", "season", "C95ugm3", "C95mgkg", "RfC", "IUR", "RfD", "GIABS", 'SFo', 'ABS')) %>%
+  set_colnames(c("metal", "wind_class", "C95ugm3", "C95mgkg", "RfC", "IUR", "RfD", "GIABS", 'SFo', 'ABS')) %>%
   mutate(site = "MIC",
          EC_noncarc_6years = C95ugm3 * factor_noncarc_6years,
          EC_noncarc_25years = C95ugm3 * factor_noncarc_25years,
@@ -428,7 +470,7 @@ health_risks_MIC_season <- conf_UCL_season %>%
 
 
 ### Calculations for health risk assessment - site: NID ----
-health_risks_NID_season <- conf_UCL_season %>%
+health_risks_NID_wind <- conf_UCL_wind %>%
   filter(site == "NID") %>%
   select(-site) %>%
   merge(., melt(RfC), all = T, by = "variable") %>%
@@ -437,7 +479,7 @@ health_risks_NID_season <- conf_UCL_season %>%
   merge(., melt(GIABS), all = T, by = "variable") %>%
   merge(., melt(SFo), all = T, by = "variable") %>%
   merge(., melt(ABS), all = T, by = "variable") %>%
-  set_colnames(c("metal", "season", "C95ugm3", "C95mgkg", "RfC", "IUR", "RfD", "GIABS", 'SFo', 'ABS')) %>%
+  set_colnames(c("metal", "wind_class", "C95ugm3", "C95mgkg", "RfC", "IUR", "RfD", "GIABS", 'SFo', 'ABS')) %>%
   mutate(site = "NID",
          EC_noncarc_6years = C95ugm3 * factor_noncarc_6years,
          EC_noncarc_25years = C95ugm3 * factor_noncarc_25years,
@@ -480,7 +522,10 @@ health_risks_NID_season <- conf_UCL_season %>%
 
 
 ##### Full dataset - results for both sites
-health_risks_season <- rbind(health_risks_MIC_season, health_risks_NID_season)
+health_risks_MIC_wind$site <- "MIC"
+health_risks_NID_wind$site <- "NID"
+health_risks_wind <- rbind(health_risks_MIC_wind, health_risks_NID_wind)
+
 
 
 
@@ -488,5 +533,6 @@ health_risks_season <- rbind(health_risks_MIC_season, health_risks_NID_season)
 ########################################
 ################ OUTPUT ################
 
-write_csv(health_risks_season,
-          "./output/03-risk_assessment-health/health_risks_season.csv")
+write_csv(health_risks_wind,
+          "./output/03-risk_assessment-health/health_risks_windclass.csv")
+
