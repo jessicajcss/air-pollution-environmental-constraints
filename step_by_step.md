@@ -7,19 +7,27 @@ date: "05/04/2022"
 
 *Supplementary material:*
 
-**Air pollution in complex terrain: lessons from a mid-size city in the southern coast of Brazil**. Dataset associated with this material can be found at DOI: 10.17632/szgtbzwpy8.1
+**A new strategy for risk assessment of PM2.5-bound elements by considering the influence of wind regimes**. 
+
+DOS SANTOS-SILVA, J. C. et al. A new strategy for risk assessment of PM2.5-bound elements by considering the influence of wind regimes. Science of The Total Environment, v.872, p. 162131, 2023.
+| https://doi.org/10.1016/j.scitotenv.2023.162131
+
+Dataset associated with this material can be found at DOI: 10.17632/szgtbzwpy8.3
 
 Authors: 
-Jéssica Caroline dos Santos Silva^1^, Sandra Helena Westrupp Medeiros^2^, Luiz Vitor da Silva^2^, Danielli Ventura Ferreira^2^, Camila Ariele Bufato Moreira^3^, Priscila Caroline de Souza Zorzenão^4^, Theotonio Mendes Pauliquevis^5^, Rodrigo Augusto Ferreira de Souza^6^, Carlos Itsuo Yamamoto^4^, Ricardo Henrique Moreton Godoi^1,3^
+Jéssica Caroline dos Santos Silva^1^, Sanja Potgieter-Vermaak^2,3^, Sandra Helena Westrupp Medeiros^4^, Luiz Vitor da Silva^4^, Danielli Ventura Ferreira^4^, Camila Ariele Bufato Moreira^5^, Priscila Caroline de Souza Zorzenão^6^, Theotonio Pauliquevis^7^, Ana Flávia Locateli Godoi^5^, Rodrigo Augusto Ferreira de Souza^8^, Carlos Itsuo Yamamoto^6^, Ricardo Henrique Moreton Godoi^1,5*^
 
 
 <p style="font-family: times, serif; font-size:8pt; font-style:italic">
 1-	Postgraduate Program in Water Resources and Environmental Engineering, Federal University of Paraná, Curitiba, Paraná, Brazil;
-2-	Department of Environmental and Sanitary Engineering, University of the Region of Joinville, Joinville, Santa Catarina, Brazil;
-3-	Department of Environmental Engineering, Federal University of Paraná, Curitiba, Paraná, Brazil;
-4-	Department of Chemical Engineering, Federal University of Paraná, Curitiba, Paraná, Brazil;
-5-	Department of Environmental Sciences, Federal University of São Paulo, Diadema, São Paulo, Brazil;
-6-	Postgraduate Program in Climate and Environment (CLIAMB), National Institute for Amazonian Research and Amazonas State University, Manaus, Amazonas, Brazil.
+2-	Ecology & Environment Research Centre, Department of Natural Science, Manchester Metropolitan University, Manchester M1 5GD, United Kingdom;
+3-	Molecular Science Institute, University of the Witwatersrand, Johannesburg, South Africa;
+4-	Department of Environmental and Sanitary Engineering, University of the Region of Joinville, Joinville, Santa Catarina, Brazil;
+5-	Department of Environmental Engineering, Federal University of Paraná, Curitiba, Paraná, Brazil;
+6-	Department of Chemical Engineering, Federal University of Paraná, Curitiba, Paraná, Brazil;
+7-	Department of Environmental Sciences, Federal University of São Paulo, Diadema, São Paulo, Brazil;
+8-	School of Technology, Amazonas State University, Manaus, Amazonas, Brazil.
+* Corresponding author. E -mail: rhmgodoi@ufpr.br. Postal address: Rua Francisco H. dos Santos, 210, Jardim das Américas, Curitiba, Paraná, Brazil.
 </p>
 
 
